@@ -71,8 +71,19 @@ const AddEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const dataUpload = {"name": state.name, "email": state.email, "contact": state.contact, "valueOne": values.valueOne, "valueTwo": values.valueTwo, "valueThree": values.valueThree, "valueFour": values.valueFour, "nilaiJson": JSON.stringify(values)}
-        console.log(dataUpload)
+        let dataValue
+        if (id) {
+            dataValue =  {
+                valueOne: values.valueOne,
+                valueTwo: values.valueTwo,
+                valueThree: values.valueThree,
+                valueFour: values.valueFour,
+            };
+        }
+        const dataUpload = (!id) 
+            ? {"name": state.name, "email": state.email, "contact": state.contact, "valueOne": values.valueOne, "valueTwo": values.valueTwo, "valueThree": values.valueThree, "valueFour": values.valueFour, "nilaiJson": JSON.stringify(values)}
+            : {"name": state.name, "email": state.email, "contact": state.contact, "valueOne": values.valueOne, "valueTwo": values.valueTwo, "valueThree": values.valueThree, "valueFour": values.valueFour, "nilaiJson": JSON.stringify(dataValue)}
+
         if (!name || !email || !contact || !valueOne || !valueTwo || !valueThree || !valueFour) {
             toast.error("Ada Beberapa Form Yang Kosong");
         } else {
