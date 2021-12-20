@@ -46,8 +46,8 @@ const AddEdit = () => {
     
     useEffect(() => {
         if (id) {
-            console.log(data)
             setState({ ...data[id] });
+            setValue({ ...data[id] });
         } else {
             setValue({ ...initialValues });
             setState({ ...initialState });
@@ -58,8 +58,6 @@ const AddEdit = () => {
             setState({ ...initialState });
         };
     }, [id, data]);
-
-    console.log(data)
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
